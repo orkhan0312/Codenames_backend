@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCardColorsTable extends Migration
+class CreateTeamsUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateCardColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('card_colors', function (Blueprint $table) {
+        Schema::create('teams_users', function (Blueprint $table) {
             $table->id();
-            $table->string('color');
+            $table->integer('user_id');
+            $table->integer('game_id');
+            $table->boolean('is_master');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateCardColorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('card_colors');
+        Schema::dropIfExists('teams_users');
     }
 }

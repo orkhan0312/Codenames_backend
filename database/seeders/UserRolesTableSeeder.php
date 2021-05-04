@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class PlayerRolesTableSeeder extends Seeder
+class UserRolesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +15,7 @@ class PlayerRolesTableSeeder extends Seeder
     {
         $roles = ['Spymaster','Ordinary'];
         foreach ($roles as $role) {
-            DB::table('player_roles')->insert(['name' => $role]);
+            DB::table('user_roles')->insert(['name' => $role]);
         }
     }
 }

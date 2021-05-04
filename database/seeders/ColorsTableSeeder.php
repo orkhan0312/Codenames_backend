@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TeamColorsTableSeeder extends Seeder
+class ColorsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class TeamColorsTableSeeder extends Seeder
      */
     public function run()
     {
-        $colors = ['Red','Blue'];
+        $colors = ['White','Black','Red','Blue'];
         foreach ($colors as $color) {
-            DB::table('team_colors')->insert(['color' => $color]);
+            DB::table('colors')->insert(['name' => $color]);
         }
     }
 }

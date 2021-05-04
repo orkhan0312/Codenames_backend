@@ -15,8 +15,10 @@ class CreateWordsTable extends Migration
     {
         Schema::create('words', function (Blueprint $table) {
             $table->id();
-            $table->string('content');
-            $table->integer('deck_id');
+            $table->string('en');
+            $table->string('ru');
+            $table->string('fr');
+            $table->string('az');
         });
     }
 

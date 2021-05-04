@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CardColorsTableSeeder extends Seeder
+class WordsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class CardColorsTableSeeder extends Seeder
      */
     public function run()
     {
-        $colors = ['Red','Blue','White','Black'];
-        foreach ($colors as $color) {
-            DB::table('card_colors')->insert(['color' => $color]);
+        $words = ['Cat', 'Dog'];
+        foreach ($words as $word) {
+            DB::table('user_roles')->insert(['en' => $word]);
         }
     }
 }
