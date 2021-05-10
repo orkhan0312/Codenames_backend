@@ -16,9 +16,9 @@ class CreateWordsTable extends Migration
         Schema::create('words', function (Blueprint $table) {
             $table->id();
             $table->string('en');
-            $table->string('ru');
-            $table->string('fr');
-            $table->string('az');
+            $table->string('ru')->nullable();
+            $table->string('fr')->nullable();
+            $table->string('az')->nullable();
         });
     }
 

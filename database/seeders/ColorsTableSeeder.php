@@ -16,7 +16,7 @@ class ColorsTableSeeder extends Seeder
     {
         $colors = ['White','Black','Red','Blue'];
         foreach ($colors as $color) {
-            DB::table('colors')->insert(['name' => $color]);
+            DB::table('colors')->insert(['color' => $color]);
         }
     }
 }

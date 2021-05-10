@@ -8,11 +8,24 @@ use Ramsey\Uuid\Uuid;
 
 class GameController extends Controller
 {
-    public function create(Request $request){
+    public function get(Request $request)
+    {
         try {
-        $token = Uuid::uuid4()->toString();
-        DB::table('games')->insert(['token' => $token, 'is_active' => true]);
-        $words = DB::table('words')->inRandomOrder()->take(25)->first();
+            $games = DB::table('games')
+                ->select('games.*')
+                ->get();
+            return parent::asJson($games);
+        } catch (\Exception $exception) {
+            return parent::asJson(null,'TRACE_ERROR', $exception->getMessage());
+        }
+    }
+
+    public function create()
+    {
+        try {
+            $token = Uuid::uuid4()->toString();
+            $game = DB::table('games')->insert(['token' => $token, 'is_active' => true]);
+            return parent::asJson($game);
         } catch (\Exception $exception) {
             return parent::asJson(null, 'TRACE_ERROR', $exception->getMessage());
         }

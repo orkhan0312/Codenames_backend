@@ -14,9 +14,12 @@ class WordsTableSeeder extends Seeder
      */
     public function run()
     {
-        $words = ['Cat', 'Dog'];
+        $words = ['cat', 'dog', 'map', 'time', 'year', 'people', 'way',
+            'day', 'man', 'thing', 'woman', 'life', 'child', 'world', 'school', 'state',
+            'family', 'student', 'group', 'country', 'problem', 'hand', 'part', 'place',
+            'case', 'week', 'company', 'system'];
         foreach ($words as $word) {
-            DB::table('user_roles')->insert(['en' => $word]);
+            DB::table('words')->insert(['en' => $word]);
         }
     }
 }
