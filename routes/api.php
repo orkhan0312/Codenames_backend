@@ -1,7 +1,7 @@
  <?php
 
 use App\Http\Controllers\AuthController;
- use App\Http\Controllers\BoardController;
+ use App\Http\Controllers\CardController;
  use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -35,4 +35,6 @@ Route::get('games', [GameController::class, 'get']);
 Route::post('games', [GameController::class, 'create']);
 Route::get('games/token', [GameController::class, 'getGameByToken']);
 
-Route::get('boards', [BoardController::class, 'get']);
+Route::get('cards', [CardController::class, 'get']);
+Route::post('cards', [CardController::class, 'create']);
+

@@ -17,6 +17,7 @@ class CreateGamesTable extends Migration
             $table->id();
             $table->string('token');
             $table->boolean('is_active');
+            $table->boolean('is_red_first')->nullable();
         });
     }
 
