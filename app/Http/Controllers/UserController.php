@@ -32,23 +32,26 @@ class UserController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         try {
-            $id = $request->input('id');
-            $request->merge(['password' => Hash::make($request->input('password')), 'updated_at' => Carbon::now()]);
-            $id = DB::table('users')->where('id', $id)->update($request->except('deleted_by'));
+            $request->merge(['password' => Hash::make($request->input('password'))]);
+            DB::table('users')->where('id', $id)->where('auth_token',
+                $request->header('Auth-Token'))->update(['name' => $request->input('name'),
+                'surname' => $request->input('surname'), 'email' => $request->input('email'),
+                'nickname' => $request->input('nickname'), 'password' => $request->input('password'),
+                'updated_by' => $request->input('updated_by'), 'updated_at' => Carbon::now()]);
             return parent::asJson($id);
         } catch (\Exception $exception) {
             return parent::asJson(null, 'TRACE_ERROR', $exception->getMessage());
         }
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request, $id)
     {
         try {
-            $id = $request->input('id');
-            DB::table('users')->where('id', $id)->where('auth_token', $request->header('Auth-Token'))->update(['deleted_at' => Carbon::now()]);
+            DB::table('users')->where('id', $id)->where('auth_token', $request->header('Auth-Token'))
+                ->update(['deleted_by' => $request->input('deleted_by'), 'deleted_at' => Carbon::now()]);
             return parent::asJson($id);
         } catch (\Exception $exception) {
             return parent::asJson(null, 'TRACE_ERROR', $exception->getMessage());

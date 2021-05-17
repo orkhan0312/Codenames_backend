@@ -21,7 +21,7 @@ class CreateCardsTable extends Migration
             $table->integer('i');
             $table->integer('j');
             $table->integer('opened_by')->nullable();
-            $table->integer('opened_at')->nullable();
+            $table->timestamp('opened_at')->nullable();
         });
     }
 

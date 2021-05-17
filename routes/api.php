@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\AuthController;
  use App\Http\Controllers\CardController;
+ use App\Http\Controllers\ClueController;
  use App\Http\Controllers\GameController;
-use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
+ use App\Http\Controllers\TeamController;
+ use App\Http\Controllers\UserController;
+ use App\Http\Controllers\UserTeamController;
+ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,8 +27,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('users', [UserController::class, 'get']);
 Route::post('users', [UserController::class, 'add']);
-Route::put('users/token', [UserController::class, 'update']);
-Route::delete('users/token', [UserController::class, 'delete']);
+Route::put('users/{id}', [UserController::class, 'update']);
+Route::delete('users/{id}', [UserController::class, 'delete']);
 Route::get('users/token', [AuthController::class, 'getUserByToken']);
 
 Route::post('login', [AuthController::class, 'login']);
@@ -37,4 +40,13 @@ Route::get('games/token', [GameController::class, 'getGameByToken']);
 
 Route::get('cards', [CardController::class, 'get']);
 Route::post('cards', [CardController::class, 'create']);
+Route::put('cards/{id}', [CardController::class, 'update']);
 
+Route::get('teams', [TeamController::class, 'get']);
+Route::post('teams', [TeamController::class, 'create']);
+
+ Route::get('users/teams', [UserTeamController::class, 'get']);
+ Route::post('users/teams', [UserTeamController::class, 'add']);
+
+ Route::get('clues', [ClueController::class, 'get']);
+ Route::post('clues', [ClueController::class, 'add']);

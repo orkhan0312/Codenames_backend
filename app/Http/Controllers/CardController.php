@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -44,6 +45,17 @@ class CardController extends Controller
             return parent::asJson($first);
         } catch (\Exception $exception) {
             return parent::asJson(null,'TRACE_ERROR', $exception->getMessage());
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            DB::table('cards')->where('id', $id)
+                ->update(['opened_by' => $request->input('opened_by'), 'opened_at' => Carbon::now()]);
+            return parent::asJson($id);
+        } catch (\Exception $exception) {
+            return parent::asJson(null, 'TRACE_ERROR', $exception->getMessage());
         }
     }
 }

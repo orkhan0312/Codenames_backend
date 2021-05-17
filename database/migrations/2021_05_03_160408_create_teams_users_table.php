@@ -16,8 +16,9 @@ class CreateTeamsUsersTable extends Migration
         Schema::create('teams_users', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->integer('team_id');
+            $table->integer('user_role_id');
             $table->integer('game_id');
-            $table->boolean('is_master');
         });
     }
 
