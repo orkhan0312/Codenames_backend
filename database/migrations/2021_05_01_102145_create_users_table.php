@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('auth_token')->nullable()->default(null);
             $table->timestamp('login_time')->nullable();
             $table->timestamp('logout_time')->nullable();
-            $table->integer('created_by');
+            $table->integer('created_by')->default(1);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->integer('updated_by')->nullable();
             $table->dateTime('updated_at')->nullable();

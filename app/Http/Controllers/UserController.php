@@ -35,12 +35,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $request->merge(['password' => Hash::make($request->input('password'))]);
+            $request->merge(['password' => Hash::make($request->input('password')), 'updated_by' => 1]);
             DB::table('users')->where('id', $id)->where('auth_token',
                 $request->header('Auth-Token'))->update(['name' => $request->input('name'),
                 'surname' => $request->input('surname'), 'email' => $request->input('email'),
-                'nickname' => $request->input('nickname'), 'password' => $request->input('password'),
-                'updated_by' => $request->input('updated_by'), 'updated_at' => Carbon::now()]);
+                'nickname' => $request->input('nickname'), 'updated_at' => Carbon::now()]);
             return parent::asJson($id);
         } catch (\Exception $exception) {
             return parent::asJson(null, 'TRACE_ERROR', $exception->getMessage());

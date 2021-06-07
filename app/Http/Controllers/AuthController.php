@@ -53,9 +53,10 @@ class AuthController extends Controller
     public function changePassword(Request $request){
         try {
             $user = DB::table('users')->where('auth_token', $request->header('Auth-Token'))->first();
-            if($request->input('new') == $request->input('new2')){
-                if (Hash::check($request->input('password'), $user->password)) {
-                    DB::table('users')->where('auth_token', $request->header('Auth-Token'))->update(['password'=> Hash::make($request->input('new'))]);
+            if($request->input('newPassword') == $request->input('confPass')){
+                if (Hash::check($request->input('oldPassword'), $user->password)) {
+                    DB::table('users')->where('auth_token', $request->header('Auth-Token'))->update(['password'=> Hash::make($request->input('newPassword'))]);
+                    return parent::asJson(true);
                 } else {
                     return parent::asJson(null, 'PASSWORD_MISMATCH', 'Wrong password!');
                 }
